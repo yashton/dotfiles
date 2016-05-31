@@ -1,0 +1,22 @@
+[user]
+	name = Ashton Snelgrove
+	email = ashton@snelgrove.io
+[merge]
+	tool = ediff
+
+[mergetool "ediff"]
+	cmd = emacs --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
+
+[difftool "ediff"]
+	cmd = emacs --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
+
+[core]
+	excludesfile = ~/.gitignore_global
+
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+[push]
+	default = simple

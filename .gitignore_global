@@ -1,0 +1,11 @@
+*~
+.DS_Store
+.dir-locals.el
+\#*\#
+.\#*
+.agignore
+*.orig
+.idea
+*.iml
+arduino
+teensy
