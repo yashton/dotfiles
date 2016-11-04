@@ -5,9 +5,9 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTFILE=~/.zsh_history
+HISTSIZE=100000000
+SAVEHIST=$HISTSIZE
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
@@ -68,3 +68,8 @@ fi
 if [ -d "$HOME/usr/bin" ] ; then
     PATH="$HOME/usr/bin:$PATH"
 fi
+
+autoload -U select-word-style
+select-word-style Normal
+bindkey '\033[3~' delete-char
+bindkey '\033\033[3~' delete-word

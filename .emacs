@@ -1,20 +1,33 @@
+(setq user-full-name "Ashton Snelgrove"
+      user-mail-address "ashton@snelgrove.io")
+
+(require 'package)
+(setq  package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                          ("org" . "http://orgmode.org/elpa/")
+                          ("melpa" . "http://melpa.org/packages/")
+                          ("melpa-stable" . "http://stable.melpa.org/packages/")))
+
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+
+(when (not package-archive-contents)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+
+(setq load-prefer-newer t)
+
 (set-face-attribute 'default nil :height 100)
-(autoload 'linum-mode "linum" "toggle line numbers on/off" t) 
-(global-set-key (kbd "C-<f5>") 'linum-mode)
-(global-set-key (kbd "C-<f6>") 'whitespace-mode)
-(global-set-key (kbd "C-<f7>") 'compile)
-(global-set-key (kbd "C-<f8>") 'recompile)
+(autoload 'linum-mode "linum" "toggle line numbers on/off" t)
+(global-set-key (kbd "<f5>") 'linum-mode)
+(global-set-key (kbd "<f6>") 'whitespace-mode)
+(global-set-key (kbd "<f7>") 'compile)
+(global-set-key (kbd "<f8>") 'recompile)
+(global-set-key (kbd "C-x M-f") 'projectile-find-file)
+(global-set-key (kbd "C-c C-c") 'recompile)
 
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
-(setq c-mode-hook '(lambda () (gtags-mode)))
-
-(setq-default c-basic-offset 4)
-(setq c-default-style "k&r"
-                c-basic-offset 4)
-
-;;(require 'mercurial)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -22,7 +35,21 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(inhibit-startup-screen t)
- '(safe-local-variable-values (quote ((textmate-gf-exclude . "(/|^)(\\.+[^/]+|fixtures|tmp|log|classes|build|target)($|/)|(\\.xcodeproj|\\.nib|\\.framework|\\.app|\\.pbproj|\\.pbxproj|\\.xcode|\\.xcodeproj|\\.bundle|\\.pyc)(/|$)") (textmate-project-roots ".dir-locals.el")))))
+ '(package-selected-packages
+   (quote
+    (logview cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
+ '(safe-local-variable-values
+   (quote
+    ((eval remove-hook
+           (quote before-save-hook)
+           (quote delete-trailing-whitespace))
+     (c-default-style . "bsd")
+     (tab-width 4)
+     (c-basic-offset 4)
+     (eval highlight-regexp " *$")
+     (eval highlight-regexp "^ *")
+     (textmate-gf-exclude . "(/|^)(\\.+[^/]+|fixtures|tmp|log|classes|build|target)($|/)|(\\.xcodeproj|\\.nib|\\.framework|\\.app|\\.pbproj|\\.pbxproj|\\.xcode|\\.xcodeproj|\\.bundle|\\.pyc)(/|$)")
+     (textmate-project-roots ".dir-locals.el")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -30,9 +57,44 @@
  ;; If there is more than one, they won't work right.
  )
 
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
-(unless (package-installed-p 'scala-mode2)
-  (package-refresh-contents) (package-install 'scala-mode2))
+(setq-default c-basic-offset 4)
+(setq c-default-style "k&r" c-basic-offset 4)
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
+(subword-mode 1)
+
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq delete-old-versions -1)
+(setq version-control t)
+(setq vc-make-backup-files t)
+(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
+
+(setq savehist-file "~/.emacs.d/savehist")
+(savehist-mode 1)
+(setq history-length t)
+(setq history-delete-duplicates t)
+(setq savehist-save-minibuffer-history 1)
+(setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+(menu-bar-mode -1)
+
+(prefer-coding-system 'utf-8)
+
+;(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;(setq require-final-newline t)
+
+;(use-package ensime :ensure t :pin melpa-stable)
+;(use-package magit :ensure t :pin melpa-stable)
+;(use-package scala-mode :interpreter ("scala" . scala-mode))
+
+;(eval-after-load 'python-mode   '(bind-key "C-c C-c" 'compile python-mode-map))
+(setq w32-pass-lwindow-to-system nil)
+(setq w32-lwindow-modifier 'super) ; Left Windows key
+
+(setq w32-pass-rwindow-to-system nil)
+(setq w32-rwindow-modifier 'super) ; Right Windows key
+
+(setq w32-pass-apps-to-system nil)
+(setq w32-apps-modifier 'super) ; Menu/App key
+
+;(load-library "windows-path")
+;(require 'windows-path)

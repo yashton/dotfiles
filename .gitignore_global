@@ -10,3 +10,14 @@
 arduino
 teensy
 .hg
+*.dll
+.gradle
+build
+scratch
+.project
+.settings
+.ensime
+gradle.properties
+Property_Files
+temp
+resources
