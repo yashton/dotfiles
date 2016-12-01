@@ -61,7 +61,7 @@
 (setq c-default-style "k&r" c-basic-offset 4)
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
-(subword-mode 1)
+(add-hook 'prog-mode-hook 'subword-mode)
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq delete-old-versions -1)

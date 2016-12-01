@@ -1,8 +1,18 @@
 [user]
 	name = Ashton Snelgrove
-	email = ashton@snelgrove.io
+	email = ashsnelgrove@ice-edge.com
+
 [merge]
-	tool = ediff
+	tool = winmeld
+
+[diff]
+	tool = winmeld
+
+[mergetool "winmeld"]
+	cmd = meld --output $(cygpath -aw \"$MERGED\") $(cygpath -aw \"$LOCAL\") $(cygpath -aw \"$BASE\") $(cygpath -aw \"$REMOTE\")
+
+[difftool "winmeld"]
+	cmd = meld $(cygpath -aw \"$LOCAL\") $(cygpath -aw \"$REMOTE\")
 
 [mergetool "ediff"]
 	cmd = emacs --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
@@ -12,11 +22,17 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
+	autocrlf = true
+	fileMode = false
 
 [alias]
 	co = checkout
 	br = branch
 	ci = commit
 	st = status
+    praise = blame
+    tree = log --graph --all --oneline
+    addnw=!sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
+
 [push]
 	default = simple

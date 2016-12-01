@@ -21,3 +21,14 @@ gradle.properties
 Property_Files
 temp
 resources
+.gitmessage
+
+World
+styles
+logback.xml
+
+caches
+daemon
+defaults
+native
+patch*

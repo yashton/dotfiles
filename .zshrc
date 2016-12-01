@@ -19,6 +19,17 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' get-revision true
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' formats ' {%r}-[%b%u%c %12.12i]'
+zstyle ':vcs_info:git:*' actionformats ' {%r}-[%b/%a%u%c %12.12i]'
+
+
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -36,12 +47,12 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-export PS1='%* %l %j [%B%F{blue}%n%f@%F{magenta}%m%f%b : %F{green}%~%f]
+export PS1='%* %l %j [%B%F{blue}%n%f@%F{magenta}%m%f%b : %F{green}%~%f]${vcs_info_msg_0_}
 %# '
 fi
 #export PS1='%n@%m %# '
 #export RPROMPT='[%~] %t'
-#PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"' 
+#PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
 
 alias ls='ls -B'
 # enable color support of ls and also add handy aliases
@@ -58,7 +69,7 @@ case $TERM in
           precmd () { print -Pn "\e]0;%n@%m: [%~]\a" }
           preexec () { print -Pn "\e]0;%n@%m: $1\a" }
           ;;
-esac 
+esac
 
 source ~/.profile
 
@@ -70,6 +81,6 @@ if [ -d "$HOME/usr/bin" ] ; then
 fi
 
 autoload -U select-word-style
-select-word-style Normal
+select-word-style Bash
 bindkey '\033[3~' delete-char
 bindkey '\033\033[3~' delete-word

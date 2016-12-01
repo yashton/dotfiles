@@ -37,3 +37,13 @@ alias py='python'
 alias transmission="transmission-remote bird:9091 -n transmission:pchu4pkM"
 alias e='emacs -nw'
 alias g='git'
+export PATH=$PATH:/cygdrive/c/Program\ Files/OpenSCAD:/cygdrive/c/Program\ Files\ \(x86\)/Meld:/cygdrive/c/Program\ Files/Java/:~/AppData/Local/Pandoc
+export JAVA_HOME
+
+GRADLE_OPTS=-Xmx2G
+
+SSHAGENT=/usr/bin/ssh-agent
+SSHAGENTARGS="-s"
+if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
+    eval `$SSHAGENT $SSHAGENTARGS` trap "kill $SSH_AGENT_PID" 0
+fi
