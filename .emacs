@@ -6,7 +6,6 @@
                           ("org" . "http://orgmode.org/elpa/")
                           ("melpa" . "http://melpa.org/packages/")
                           ("melpa-stable" . "http://stable.melpa.org/packages/")))
-
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
@@ -35,6 +34,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(inhibit-startup-screen t)
+
  '(package-selected-packages
    (quote
     (logview cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
@@ -50,12 +50,6 @@
      (eval highlight-regexp "^ *")
      (textmate-gf-exclude . "(/|^)(\\.+[^/]+|fixtures|tmp|log|classes|build|target)($|/)|(\\.xcodeproj|\\.nib|\\.framework|\\.app|\\.pbproj|\\.pbxproj|\\.xcode|\\.xcodeproj|\\.bundle|\\.pyc)(/|$)")
      (textmate-project-roots ".dir-locals.el")))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 (setq-default c-basic-offset 4)
 (setq c-default-style "k&r" c-basic-offset 4)
