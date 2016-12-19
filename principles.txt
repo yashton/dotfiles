@@ -1,0 +1,49 @@
+* Clean Code
+Immutable > Mutable
+Composition > Inheritance
+Explicit > Implicit
+Polymorphism > Conditional
+Polymorphism != Code sharing (OOP does not require inheritance or abstract classes)
+Write code so the poor bastard after you doesn't curse your name.
+* Tool choices
+Asynchronous first.
+Code > Configuration
+Code > Convention
+Tests > Documentation
+Choose the right tool not just the tool you have.
+* Architecture
+Domain > Code
+Functional > Imperative
+referential transparency (account for all inputs, all outputs including exceptions)
+limited state
+Declarative > imperative (i.e. what > how)
+Separation of concerns > tight coupling
+Data transforms > tickling
+"First thing that compiles" is not an acceptable engineering decision.
+small sharp tools (do one thing, and do it well)
+high signal to noise ratio.
+Abstraction > Code grouping
+Clean code > needless optimization
+Build heirarchies of systems.
+Website is not an architecture
+* Testing and Error handling
+Test around separation of concerns
+Fail loud, fail fast
+Edge case handling > Make it go away
+Understanding how things work > sacrificing to the elder gods and hoping things happen
+test for stability
+Errors are a failure in the design or implementation of code. Exceptions are output of your function.
+* Data
+Cannot promote derived "data"
+Serialize at boundaries only.
+structured types > dynamic data
+* Concurrency
+Event-driven / Reactive > Explicit calls
+Asynchronous > Synchronous
+Can treat local as remote, but not vice versa.
+Time is a continuum.
+Communication > synchronized state
+Threads and processes are not concurrency primitives, but a foundation that concurrency is built on.
+* Misc
+"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." Martin Fowler, 2008
+"There is nothing more permanent than a temporary fix."
