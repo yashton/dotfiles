@@ -37,7 +37,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (logview cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
+    (markdown-mode logview cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
  '(safe-local-variable-values
    (quote
     ((eval remove-hook
