@@ -1,18 +1,12 @@
 [user]
 	name = Ashton Snelgrove
-	email = ashsnelgrove@ice-edge.com
+	email = ashton@snelgrove.science
 
 [merge]
-	tool = winmeld
+	tool = meld
 
 [diff]
-	tool = winmeld
-
-[mergetool "winmeld"]
-	cmd = meld --output $(cygpath -aw \"$MERGED\") $(cygpath -aw \"$LOCAL\") $(cygpath -aw \"$BASE\") $(cygpath -aw \"$REMOTE\")
-
-[difftool "winmeld"]
-	cmd = meld $(cygpath -aw \"$LOCAL\") $(cygpath -aw \"$REMOTE\")
+	tool = meld
 
 [mergetool "ediff"]
 	cmd = emacs --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
@@ -22,8 +16,9 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
-	autocrlf = true
+	autocrlf = input
 	fileMode = false
+	eol = lf
 
 [pretty]
     treeline= %C(bold blue)%h%C(reset) %C(yellow)%ai%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)
@@ -39,6 +34,3 @@
 
 [push]
 	default = simple
-
-[commit]
-    template = ~/.gitmessage
