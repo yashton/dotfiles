@@ -1,0 +1,89 @@
+*"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." Martin Fowler, 2008*
+
+If you can't measure it, you can't change it!
+
+## The Schizophrenia of Computing
+
+Computer science is a branch of mathematics.
+Computer engineering is a branch of electrical engineering.
+Software engineering is a branch of sociology.
+Balance the three if you can.
+
+## Clean Code
+
+* Write code so the poor bastard after you doesn't curse your name.
+* Code with intention.
+* Immutable > Mutable
+* Data > State
+* Separation of concerns > tight coupling
+* Composition > Inheritance
+* Explicit > Implicit
+* Polymorphism > Conditional
+* Polymorphism != Code sharing (OOP does not require inheritance or abstract classes)
+* Functional > Imperative
+* Declarative > imperative (i.e. what > how)
+* Abstraction > Code grouping
+* Clean code > needless optimization
+* referential transparency (account for all inputs, all outputs including exceptions)
+* small sharp tools (do one thing, and do it well)
+* Build composable tools.
+* high signal to noise ratio.
+* Separate structural changes from behavioral changes.
+* Limit inheritance.
+* Maintain locality of functionality.
+* Develop personal craftsmanship. Never stop learning.
+
+## Architecture
+
+* Domain > Code
+* Why -> What -> How
+* Build heirarchies of systems.
+* Asynchronous first.
+* Data > Code
+* Code > Configuration
+* Code > Convention
+* Tests > Documentation
+* Create APIs. Start with client/server
+* Establish boundaries and surfaces.
+* Choose the right tool not just the tool you have.
+* Caller > Callee. Don't push concerns into the callee.
+* "First thing that compiles" is not an acceptable engineering decision.
+* Actors > Objects (or rather, actors encapsulate better than objects.)
+* Website is not an architecture
+* "There is nothing more permanent than a temporary fix."
+* Encapsulate state in state machines.
+
+## Testing and Error handling
+
+* Test around separation of concerns
+* Test for behavior.
+* Fail loud, fail fast
+* Edge case handling > Make it go away
+* Understanding how things work > sacrificing to the elder gods and hoping things happen
+* test for stability
+* Errors are a failure in the design or implementation of code. Exceptions are output of your function.
+* Mocking is a smell that you have too many dependencies.
+
+## Data
+
+* Data > State. State is data that is variant over time.
+* structured types > dynamic data
+* explicit schema > implicit schema
+* Immutability > mutability
+* Data transforms > tickling
+* Serialize at boundaries only.
+* Cannot promote derived data.
+* Null considered harmful. Use explicit definitions to indicate "value may not be present".
+* Objects and structures should be in a stable state once they leave the constructor.
+
+## Concurrency
+
+* Event-driven / Reactive > Explicit calls
+* Asynchronous > Synchronous
+* Can treat local as remote, but not vice versa.
+* Time is a continuum.
+* Communication > synchronized state
+* Separate context of execution from behavior.
+* Threads and processes are contexts of execution, not concurrency primitives.
+* Share nothing.
+
