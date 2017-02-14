@@ -37,7 +37,7 @@ Balance the three if you can.
 
 * Domain > Code
 * Why -> What -> How
-* Build heirarchies of systems.
+* Build hierarchies of systems.
 * Asynchronous first.
 * Data > Code
 * Code > Configuration
@@ -87,3 +87,12 @@ Balance the three if you can.
 * Threads and processes are contexts of execution, not concurrency primitives.
 * Share nothing.
 
+## Code reviews
+1. Does this represent one change?
+* Does it present clean system surfaces? (Does everything fit together.)
+* Does it present clean public surfaces? (Is it useable)
+* Automated tests. (Does it do what it should around the surfaces?)
+* Style (Is it clear and readable?)
+
+"Whatever language you write in, your task as a programmer is to do the best you can with the tools at hand. A good programmer can overcome a poor language or a clumsy operating system, but even a great programming environment will not rescue a bad programmer."
+Kernighan and Pike
