@@ -8,6 +8,12 @@
 [diff]
 	tool = meld
 
+[mergetool "winmeld"]
+	cmd = meld --output $(cygpath -aw \"$MERGED\") $(cygpath -aw \"$LOCAL\") $(cygpath -aw \"$BASE\") $(cygpath -aw \"$REMOTE\")
+
+[difftool "winmeld"]
+	cmd = meld $(cygpath -aw \"$LOCAL\") $(cygpath -aw \"$REMOTE\")
+
 [mergetool "ediff"]
 	cmd = emacs --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
 
