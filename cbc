@@ -1,0 +1,9 @@
+#! /bin/bash
+
+if [[ "$OSTYPE" == "cygwin" ]]; then
+    putclip
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+    xclip -o -selection clipboard
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    pbcopy
+fi;
