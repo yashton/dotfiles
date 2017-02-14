@@ -37,7 +37,7 @@
 
  '(package-selected-packages
    (quote
-    (markdown-mode logview cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
+    (whole-line-or-region protobuf-mode markdown-mode logview cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
  '(safe-local-variable-values
    (quote
     ((eval remove-hook
@@ -55,7 +55,6 @@
 (setq c-default-style "k&r" c-basic-offset 4)
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
-(add-hook 'prog-mode-hook 'subword-mode)
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq delete-old-versions -1)
@@ -92,3 +91,6 @@
 
 ;(load-library "windows-path")
 ;(require 'windows-path)
+(whole-line-or-region-mode 1)
+(add-hook 'prog-mode-hook 'subword-mode)
+(add-hook 'minibuffer-setup-hook 'subword-mode)

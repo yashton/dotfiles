@@ -20,7 +20,6 @@ scratch
 gradle.properties
 Property_Files
 temp
-resources
 .gitmessage
 
 World
@@ -32,3 +31,6 @@ daemon
 defaults
 native
 patch*
+resources
+*.patch
+*.org

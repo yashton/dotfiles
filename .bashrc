@@ -108,3 +108,5 @@ fi
 
 alias psgrep='ps aux | grep'
 alias emacs='emacs -nw'
+
+source .profile
