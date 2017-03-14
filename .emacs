@@ -25,6 +25,18 @@
 (global-set-key (kbd "C-x M-f") 'projectile-find-file)
 (global-set-key (kbd "C-c C-c") 'recompile)
 
+;; silver searcher keybindings
+(global-set-key (kbd "M-s k") 'ag-kill-buffers)
+(global-set-key (kbd "M-s a a") 'ag)
+(global-set-key (kbd "M-s a f") 'ag-files)
+(global-set-key (kbd "M-s a d") 'ag-dired)
+(global-set-key (kbd "M-s a r") 'ag-regexp)
+(global-set-key (kbd "M-s a e") 'ag-dired-regexp)
+(global-set-key (kbd "M-s p p") 'ag-project)
+(global-set-key (kbd "M-s p f") 'ag-project-files)
+(global-set-key (kbd "M-s p d") 'ag-project-dired)
+(global-set-key (kbd "M-s p r") 'ag-project-regexp)
+(global-set-key (kbd "M-s p e") 'ag-project-dired-regexp)
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
@@ -37,7 +49,7 @@
 
  '(package-selected-packages
    (quote
-    (whole-line-or-region protobuf-mode markdown-mode logview cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
+    (hideshow-org whole-line-or-region protobuf-mode markdown-mode logview cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
  '(safe-local-variable-values
    (quote
     ((eval remove-hook
