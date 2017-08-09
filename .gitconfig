@@ -7,6 +7,7 @@
 
 [diff]
     tool = meld
+    renameLimit = 20000
 
 [mergetool "winmeld"]
     cmd = meld --output $(cygpath -aw \"$MERGED\") $(cygpath -aw \"$LOCAL\") $(cygpath -aw \"$BASE\") $(cygpath -aw \"$REMOTE\")
@@ -23,7 +24,6 @@
 [core]
     excludesfile = ~/.gitignore_global
     autocrlf = input
-    filemode = false
     eol = lf
 
 [pretty]

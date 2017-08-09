@@ -31,6 +31,7 @@ daemon
 defaults
 native
 patch*
-resources
 *.patch
 *.org
+.ensime_cache.d
+application.conf

@@ -49,7 +49,7 @@
 
  '(package-selected-packages
    (quote
-    (hideshow-org whole-line-or-region protobuf-mode markdown-mode logview cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
+    (whole-line-or-region protobuf-mode markdown-mode logview cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
  '(safe-local-variable-values
    (quote
     ((eval remove-hook
@@ -84,25 +84,9 @@
 
 (prefer-coding-system 'utf-8)
 
-;(add-hook 'before-save-hook 'delete-trailing-whitespace)
-;(setq require-final-newline t)
-
-;(use-package ensime :ensure t :pin melpa-stable)
-;(use-package magit :ensure t :pin melpa-stable)
-;(use-package scala-mode :interpreter ("scala" . scala-mode))
-
-;(eval-after-load 'python-mode   '(bind-key "C-c C-c" 'compile python-mode-map))
-(setq w32-pass-lwindow-to-system nil)
-(setq w32-lwindow-modifier 'super) ; Left Windows key
-
-(setq w32-pass-rwindow-to-system nil)
-(setq w32-rwindow-modifier 'super) ; Right Windows key
-
-(setq w32-pass-apps-to-system nil)
-(setq w32-apps-modifier 'super) ; Menu/App key
-
-;(load-library "windows-path")
-;(require 'windows-path)
-(whole-line-or-region-mode 1)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq require-final-newline t)
 (add-hook 'prog-mode-hook 'subword-mode)
 (add-hook 'minibuffer-setup-hook 'subword-mode)
+
+(whole-line-or-region-mode 1)

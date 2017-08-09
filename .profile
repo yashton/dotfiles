@@ -46,3 +46,7 @@ if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
     eval `$SSHAGENT $SSHAGENTARGS` trap "kill $SSH_AGENT_PID" 0
 fi
 
+alias urlencode='python -c "import sys, urllib as ul; [sys.stdout.write(ul.quote_plus(l)) for l in sys.stdin]"'
+alias urldecode='python -c "import sys, urllib as ul; [sys.stdout.write(ul.unquote_plus(l)) for l in sys.stdin]"'
+
+PATH=$PATH:~/.npm-global/bin
