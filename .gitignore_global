@@ -42,3 +42,6 @@ project.lock.json
 *.tar.gz
 
 *.nuspec
+.ensime_cache.d
+application.conf
+

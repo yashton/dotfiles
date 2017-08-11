@@ -95,4 +95,4 @@
     (company-mode)
     (flycheck-mode)
     (turn-on-purescript-indentation)
-    (local-set-key (kbd "M-.") #'company-complete)))
+    (local-set-key (kbd "M-SPC") #'company-complete)))

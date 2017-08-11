@@ -23,7 +23,6 @@
 
 [core]
     autocrlf = input
-    filemode = false
     eol = lf
     excludesfile = ~/.gitignore_global
 
