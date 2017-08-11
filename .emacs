@@ -39,6 +39,7 @@
 (global-set-key (kbd "M-s p e") 'ag-project-dired-regexp)
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(add-hook 'org-mode-hook 'visual-line-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -46,10 +47,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(inhibit-startup-screen t)
-
  '(package-selected-packages
    (quote
-    (hideshow-org whole-line-or-region protobuf-mode markdown-mode logview cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
+    (psc-ide psci purescript-mode elmacro scad-mode scad-preview hideshow-org whole-line-or-region protobuf-mode markdown-mode cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
  '(safe-local-variable-values
    (quote
     ((eval remove-hook
@@ -74,12 +74,6 @@
 (setq vc-make-backup-files t)
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
 
-(setq savehist-file "~/.emacs.d/savehist")
-(savehist-mode 1)
-(setq history-length t)
-(setq history-delete-duplicates t)
-(setq savehist-save-minibuffer-history 1)
-(setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
 (menu-bar-mode -1)
 
 (prefer-coding-system 'utf-8)
@@ -106,3 +100,17 @@
 (whole-line-or-region-mode 1)
 (add-hook 'prog-mode-hook 'subword-mode)
 (add-hook 'minibuffer-setup-hook 'subword-mode)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(require 'savehist)
+(setq savehist-file "~/.emacs.d/savehist")
+(savehist-mode 1)
+(setq history-length t)
+(setq history-delete-duplicates t)
+(setq savehist-save-minibuffer-history 1)
+(setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))

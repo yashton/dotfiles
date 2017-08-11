@@ -5,7 +5,7 @@
 .\#*
 .agignore
 *.orig
-.idea
+
 *.iml
 arduino
 teensy
@@ -22,8 +22,6 @@ Property_Files
 temp
 .gitmessage
 
-World
-styles
 logback.xml
 
 caches
@@ -31,6 +29,16 @@ daemon
 defaults
 native
 patch*
-resources
+
 *.patch
 *.org
+
+.classpath
+.project
+*.log
+
+project.lock.json
+*.bak
+*.tar.gz
+
+*.nuspec

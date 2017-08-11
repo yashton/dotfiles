@@ -46,3 +46,4 @@ if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
     eval `$SSHAGENT $SSHAGENTARGS` trap "kill $SSH_AGENT_PID" 0
 fi
 
+PATH="/usr/bin:/usr/local/bin:/cygdrive/c/Program\ Files/OpenSCAD:/cygdrive/c/Program Files (x86)/Meld:/cygdrive/c/Program Files/Java/:~/AppData/Local/Pandoc:/cygdrive/c/Program Files/Oracle/VirtualBox:$HOME/AppData/Local/Android/android-sdk/platform-tools:/cygdrive/c/Program\ Files\ (x86)/Microsoft\ Visual\ Studio/2017/Community/MSBuild/15.0/Bin:$PATH"
