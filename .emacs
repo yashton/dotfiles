@@ -90,3 +90,10 @@
 (add-hook 'minibuffer-setup-hook 'subword-mode)
 
 (whole-line-or-region-mode 1)
+
+(add-hook 'purescript-mode
+  (lambda ()
+    (psc-ide-mode)
+    (company-mode)
+    (flycheck-mode)
+    (turn-on-purescript-indentation)))
