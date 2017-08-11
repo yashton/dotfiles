@@ -1,5 +1,5 @@
 (setq user-full-name "Ashton Snelgrove"
-      user-mail-address "ashton@snelgrove.io")
+      user-mail-address "ashton@snelgrove.science")
 
 (require 'package)
 (setq  package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -16,7 +16,6 @@
 
 (setq load-prefer-newer t)
 
-(set-face-attribute 'default nil :height 100)
 (autoload 'linum-mode "linum" "toggle line numbers on/off" t)
 (global-set-key (kbd "<f5>") 'linum-mode)
 (global-set-key (kbd "<f6>") 'whitespace-mode)
@@ -37,15 +36,12 @@
 
  '(package-selected-packages
    (quote
-    (markdown-mode logview cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
+    (markdown-mode logview use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime purescript-mode psc-ide)))
  '(safe-local-variable-values
    (quote
     ((eval remove-hook
            (quote before-save-hook)
            (quote delete-trailing-whitespace))
-     (c-default-style . "bsd")
-     (tab-width 4)
-     (c-basic-offset 4)
      (eval highlight-regexp " *$")
      (eval highlight-regexp "^ *")
      (textmate-gf-exclude . "(/|^)(\\.+[^/]+|fixtures|tmp|log|classes|build|target)($|/)|(\\.xcodeproj|\\.nib|\\.framework|\\.app|\\.pbproj|\\.pbxproj|\\.xcode|\\.xcodeproj|\\.bundle|\\.pyc)(/|$)")
@@ -73,22 +69,14 @@
 
 (prefer-coding-system 'utf-8)
 
-;(add-hook 'before-save-hook 'delete-trailing-whitespace)
-;(setq require-final-newline t)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq require-final-newline t)
+(subword-mode 1)
 
-;(use-package ensime :ensure t :pin melpa-stable)
-;(use-package magit :ensure t :pin melpa-stable)
-;(use-package scala-mode :interpreter ("scala" . scala-mode))
-
-;(eval-after-load 'python-mode   '(bind-key "C-c C-c" 'compile python-mode-map))
-(setq w32-pass-lwindow-to-system nil)
-(setq w32-lwindow-modifier 'super) ; Left Windows key
-
-(setq w32-pass-rwindow-to-system nil)
-(setq w32-rwindow-modifier 'super) ; Right Windows key
-
-(setq w32-pass-apps-to-system nil)
-(setq w32-apps-modifier 'super) ; Menu/App key
-
-;(load-library "windows-path")
-;(require 'windows-path)
+(add-hook 'purescript-mode-hook
+  (lambda ()
+    (psc-ide-mode)
+    (company-mode)
+    (flycheck-mode)
+    (turn-on-purescript-indentation)
+    (local-set-key (kbd "M-.") #'company-complete)))
