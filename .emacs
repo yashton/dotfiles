@@ -24,8 +24,21 @@
 (global-set-key (kbd "C-x M-f") 'projectile-find-file)
 (global-set-key (kbd "C-c C-c") 'recompile)
 
+;; silver searcher keybindings
+(global-set-key (kbd "M-s k") 'ag-kill-buffers)
+(global-set-key (kbd "M-s a a") 'ag)
+(global-set-key (kbd "M-s a f") 'ag-files)
+(global-set-key (kbd "M-s a d") 'ag-dired)
+(global-set-key (kbd "M-s a r") 'ag-regexp)
+(global-set-key (kbd "M-s a e") 'ag-dired-regexp)
+(global-set-key (kbd "M-s p p") 'ag-project)
+(global-set-key (kbd "M-s p f") 'ag-project-files)
+(global-set-key (kbd "M-s p d") 'ag-project-dired)
+(global-set-key (kbd "M-s p r") 'ag-project-regexp)
+(global-set-key (kbd "M-s p e") 'ag-project-dired-regexp)
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(add-hook 'org-mode-hook 'visual-line-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -33,10 +46,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(inhibit-startup-screen t)
-
  '(package-selected-packages
    (quote
-    (markdown-mode logview use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime purescript-mode psc-ide)))
+    (psc-ide psci purescript-mode elmacro scad-mode scad-preview hideshow-org whole-line-or-region protobuf-mode markdown-mode cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
  '(safe-local-variable-values
    (quote
     ((eval remove-hook
@@ -51,7 +63,6 @@
 (setq c-default-style "k&r" c-basic-offset 4)
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
-(add-hook 'prog-mode-hook 'subword-mode)
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq delete-old-versions -1)
@@ -59,19 +70,24 @@
 (setq vc-make-backup-files t)
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
 
-(setq savehist-file "~/.emacs.d/savehist")
-(savehist-mode 1)
-(setq history-length t)
-(setq history-delete-duplicates t)
-(setq savehist-save-minibuffer-history 1)
-(setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
 (menu-bar-mode -1)
 
 (prefer-coding-system 'utf-8)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (setq require-final-newline t)
-(subword-mode 1)
+
+(whole-line-or-region-mode 1)
+(add-hook 'prog-mode-hook 'subword-mode)
+(add-hook 'minibuffer-setup-hook 'subword-mode)
+
+(require 'savehist)
+(setq savehist-file "~/.emacs.d/savehist")
+(savehist-mode 1)
+(setq history-length t)
+(setq history-delete-duplicates t)
+(setq savehist-save-minibuffer-history 1)
+(setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
 
 (add-hook 'purescript-mode-hook
   (lambda ()

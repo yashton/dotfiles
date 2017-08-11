@@ -1,36 +1,52 @@
 [user]
-	name = Ashton Snelgrove
-	email = ashton@snelgrove.science
+    name = Ashton Snelgrove
+    email = ashton@snelgrove.science
 
 [merge]
-	tool = meld
+    tool = meld
 
 [diff]
-	tool = meld
+    tool = meld
+    renameLimit = 20000
+
+[mergetool "winmeld"]
+    cmd = meld --output $(cygpath -aw \"$MERGED\") $(cygpath -aw \"$LOCAL\") $(cygpath -aw \"$BASE\") $(cygpath -aw \"$REMOTE\")
+
+[difftool "winmeld"]
+    cmd = meld $(cygpath -aw \"$LOCAL\") $(cygpath -aw \"$REMOTE\")
 
 [mergetool "ediff"]
-	cmd = emacs --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
+    cmd = emacs --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
 
 [difftool "ediff"]
-	cmd = emacs --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
+    cmd = emacs --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
 
 [core]
-	excludesfile = ~/.gitignore_global
-	autocrlf = input
-	fileMode = false
-	eol = lf
+    autocrlf = input
+    filemode = false
+    eol = lf
+    excludesfile = ~/.gitignore_global
 
 [pretty]
     treeline= %C(bold blue)%h%C(reset) %C(yellow)%ai%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)
 
 [alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
     praise = blame
     tree = log --graph --all --abbrev-commit --decorate --pretty=treeline
-    addnw=!sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
+    root = rev-parse --show-toplevel
 
 [push]
-	default = simple
+    default = simple
+
+[commit]
+    template = ~/.gitmessage
+
+[init]
+    templatedir = ~/.git_template
+
+[include]
+    path = ~/.gitenv

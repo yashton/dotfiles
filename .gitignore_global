@@ -5,7 +5,7 @@
 .\#*
 .agignore
 *.orig
-.idea
+
 *.iml
 arduino
 teensy
@@ -20,11 +20,8 @@ scratch
 gradle.properties
 Property_Files
 temp
-resources
 .gitmessage
 
-World
-styles
 logback.xml
 
 caches
@@ -32,3 +29,16 @@ daemon
 defaults
 native
 patch*
+
+*.patch
+*.org
+
+.classpath
+.project
+*.log
+
+project.lock.json
+*.bak
+*.tar.gz
+
+*.nuspec

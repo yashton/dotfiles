@@ -32,10 +32,11 @@ export LC_CTYPE="en_US.UTF-8"
 export LC_COLLATE="en_US.UTF-8"
 
 alias emacs='emacs -nw'
-alias psgrep='ps aux | grep'
-alias py='python'
+alias py2='python'
+alias py='python3'
 alias e='emacs -nw'
 alias g='git'
+alias gr='gradle'
 
 GRADLE_OPTS=-Xmx2G
 

@@ -36,6 +36,7 @@ If you can't measure it, you can't change it!
 * Why -> What -> How. Domain defines implementation.
 * Build heirarchies of systems. Webs are bad. Noodles aren't much better.
 * Asynchronous first.
+* Domain > Code
 * Data > Code > Configuration > Convention
 * Tests > Documentation
 * Establish boundaries and surfaces. Create APIs.
@@ -79,3 +80,14 @@ If you can't measure it, you can't change it!
 * Communication > synchronized state
 * Separate context of execution from behavior.
 * Threads and processes are contexts of execution, not concurrency primitives.
+* Share nothing.
+
+## Code reviews
+1. Does this represent one change?
+* Does it present clean system surfaces? (Does everything fit together.)
+* Does it present clean public surfaces? (Is it useable)
+* Automated tests. (Does it do what it should around the surfaces?)
+* Style (Is it clear and readable?)
+
+"Whatever language you write in, your task as a programmer is to do the best you can with the tools at hand. A good programmer can overcome a poor language or a clumsy operating system, but even a great programming environment will not rescue a bad programmer."
+Kernighan and Pike
