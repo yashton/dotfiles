@@ -47,3 +47,7 @@ if [ -z "$SSH_AUTH_SOCK" -a -x "$SSHAGENT" ]; then
 fi
 
 PATH=$PATH:~/.npm-global/bin
+
+if [ -e "$HOME/.profile-local" ] ; then
+    source "$HOME/.profile-local"
+fi

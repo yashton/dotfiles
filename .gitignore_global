@@ -43,5 +43,5 @@ project.lock.json
 
 *.nuspec
 .ensime_cache.d
+.ensime_cache
 application.conf
-

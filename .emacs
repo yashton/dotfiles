@@ -9,11 +9,6 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
-;; (when (not package-archive-contents)
-;;   (package-refresh-contents)
-;;   (package-install 'use-package))
-;; (require 'use-package)
-
 (setq load-prefer-newer t)
 
 (autoload 'linum-mode "linum" "toggle line numbers on/off" t)
@@ -48,7 +43,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (psc-ide psci purescript-mode elmacro scad-mode scad-preview hideshow-org whole-line-or-region protobuf-mode markdown-mode cygwin-mount use-package async with-editor epl pkg-info magit-popup git-commit projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
+    (json-mode yaml-mode helm-dash helm-ag helm-core flycheck psc-ide psci purescript-mode elmacro scad-mode scad-preview hole-line-or-region protobuf-mode markdown-mode use-package async epl pkg-info magit-popup projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
  '(safe-local-variable-values
    (quote
     ((eval remove-hook
@@ -96,3 +91,33 @@
     (flycheck-mode)
     (turn-on-purescript-indentation)
     (local-set-key (kbd "M-SPC") #'company-complete)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(require 'helm-config)
+(helm-mode 1)
+(define-key global-map [remap find-file] 'helm-find-files)
+(define-key global-map [remap occur] 'helm-occur)
+(define-key global-map [remap list-buffers] 'helm-buffers-list)
+(define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(unless (boundp 'completion-in-region-function)
+  (define-key lisp-interaction-mode-map [remap completion-at-point] 'helm-lisp-completion-at-point)
+  (define-key emacs-lisp-mode-map       [remap completion-at-point] 'helm-lisp-completion-at-point))
+
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+(setq ensime-startup-notification nil)
+(setq ensime-startup-snapshot-notification nil)
+
+(global-set-key (kbd "C-x <left>") 'windmove-left)
+(global-set-key (kbd "C-x <right>") 'windmove-right)
+(global-set-key (kbd "C-x <up>") 'windmove-up)
+(global-set-key (kbd "C-x <down>") 'windmove-down)
+(add-hook 'java-mode-hook 'ensime-mode)

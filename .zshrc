@@ -26,7 +26,6 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -57,8 +56,14 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+if [ -n "${DOCKER_MACHINE_NAME+x}" ]; then
+  docker_info_msg=" <${DOCKER_MACHINE_NAME}>"
+else
+  docker_info_msg=''
+fi
+
 if [ "$color_prompt" = yes ]; then
-export PS1='%* %l %j [%B%F{blue}%n%f@%F{magenta}%m%f%b : %F{green}%~%f]${vcs_info_msg_0_}
+export PS1='%* %l %j [%B%F{blue}%n%f@%F{magenta}%m%f%b : %F{green}%~%f]${vcs_info_msg_0_}${docker_info_msg}
 %# '
 fi
 #export PS1='%n@%m %# '
