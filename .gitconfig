@@ -11,7 +11,7 @@
 
 [difftool "macmeld"]
   trustExitCode = true
-  cmd = open -W -a Meld --args \"$LOCAL\" \"$PWD/$REMOTE\"
+  cmd = open -W -a Meld --args \"$LOCAL\" \"$REMOTE\"
 
 [mergetool "macmeld"]
   trustExitCode = true

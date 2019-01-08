@@ -44,10 +44,13 @@
  '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (rjsx-mode json-mode yaml-mode helm-dash helm-ag helm-core flycheck psc-ide psci purescript-mode elmacro scad-mode scad-preview hole-line-or-region protobuf-mode markdown-mode use-package async epl pkg-info magit-popup projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
+    (nginx-mode ess helm-projectile kotlin-mode haskell-mode whole-line-or-region yarn-mode graphviz-dot-mode rjsx-mode gxref ggtags helm-gtags tidy json-mode yaml-mode helm-dash helm-ag helm-core flycheck psc-ide psci purescript-mode elmacro scad-mode scad-preview hole-line-or-region protobuf-mode markdown-mode use-package async epl pkg-info magit-popup projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
  '(safe-local-variable-values
    (quote
-    ((eval remove-hook
+    ((js-indent-level . 2)
+     (\,
+      (js-indent-level . 2))
+     (eval remove-hook
            (quote before-save-hook)
            (quote delete-trailing-whitespace))
      (eval highlight-regexp " *$")
@@ -121,31 +124,41 @@
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)
-(add-hook 'java-mode-hook 'ensime-mode)
+;;(add-hook 'java-mode-hook 'ensime-mode)
 
-(defun split-name (s)
-  (split-string
-   (let ((case-fold-search nil))
-	 (downcase
-	  (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s)))
-   "[^A-Za-z0-9]+"))
-(defun camelcase  (s) (mapconcat 'capitalize (split-name s) ""))
-(defun underscore (s) (mapconcat 'downcase   (split-name s) "_"))
-(defun dasherize  (s) (mapconcat 'downcase   (split-name s) "-"))
-(defun colonize   (s) (mapconcat 'capitalize (split-name s) "::"))
-(defun camelscore (s)
-  (cond ((string-match-p "\:" s)	(dasherize  s))
-	    ((string-match-p "-" s)	(camelcase  s))
-	    ((string-match-p "_"  s)	(colonize   s))
-	    (t						(underscore s)) ))
-(defun camelscore-word-at-point ()
-  (interactive)
-  (let* ((case-fold-search nil)
-	     (beg (and (skip-chars-backward "[:alnum:]:_-") (point)))
-	     (end (and (skip-chars-forward  "[:alnum:]:_-") (point)))
-	     (txt (buffer-substring beg end))
-	     (cml (camelscore txt)) )
-	(if cml (progn (delete-region beg end) (insert cml))) ))
+(add-hook 'html-mode-hook (lambda () (set (make-local-variable 'sgml-basic-offset) 4)))
 
-(global-set-key (kbd "M-C") 'camelscore-word-at-point)
+(make-face 'python-custom-face)
+(set-face-foreground 'python-custom-face "pink")
+(add-hook 'python-mode-hook
+           (lambda ()
+            (set (make-local-variable 'font-lock-comment-face)
+                 'python-custom-face)))
+
+(c-add-style "my-c-style" '((c-continued-statement-offset 4)))
+(defun my-c-mode-hook ()
+    (c-set-style "my-c-style"))
+    ;; (c-set-offset 'inline-open '+)
+    ;; (c-set-offset 'block-open '+)
+    ;; (c-set-offset 'brace-list-open '+)   ; all "opens" should be indented by the c-indent-level
+;;    (c-set-offset 'case-label '+))       ; indent case labels by c-indent-level, too
+(add-hook 'java-mode-hook 'my-c-mode-hook)
+(add-hook 'prog-mode-hook 'helm-gtags-mode)
+
+(global-set-key (kbd "C-c h") 'helm-gtags-display-browser)
+(global-set-key (kbd "C-c P") 'helm-gtags-find-files)
+(global-set-key (kbd "C-c f") 'helm-gtags-parse-file)
+(global-set-key (kbd "C-c g") 'helm-gtags-find-pattern)
+(global-set-key (kbd "C-c s") 'helm-gtags-find-symbol)
+(global-set-key (kbd "C-c r") 'helm-gtags-find-rtag)
+(global-set-key (kbd "C-c t") 'helm-gtags-find-tag)
+(global-set-key (kbd "C-c d") 'helm-gtags-find-tag)
+(global-set-key (kbd "C-c C-]") 'helm-gtags-find-tag-from-here)
+(global-set-key (kbd "C-c C-t") 'helm-gtags-pop-stack)
+(global-set-key (kbd "M-*") 'helm-gtags-pop-stack)
+(global-set-key (kbd "M-.") 'helm-gtags-find-tag)
+(global-set-key (kbd "C-x 4 .") 'helm-gtags-find-tag-other-window)
+(put 'downcase-region 'disabled nil)
+(add-to-list 'auto-mode-alist '(".*\\.js$" . rjsx-mode))
+
 (setq python-shell-interpreter "python3")
