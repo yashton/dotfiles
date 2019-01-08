@@ -17,6 +17,7 @@ scratch
 .project
 .settings
 .ensime
+ensime.sbt
 gradle.properties
 Property_Files
 temp
@@ -45,3 +46,14 @@ project.lock.json
 .ensime_cache.d
 .ensime_cache
 application.conf
+
+logger.xml
+
+gtags.conf
+GPATH
+GRTAGS
+GTAGS
+*.conf
+application-*.yml
+*.properties
+.ignore

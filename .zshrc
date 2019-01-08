@@ -7,9 +7,18 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
+docker_info () {
+    if [ -n "${DOCKER_MACHINE_NAME+x}" ]; then
+        docker_info_msg=" <${DOCKER_MACHINE_NAME}>"
+    else
+        docker_info_msg=""
+    fi
+}
+
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
+precmd_functions+=( docker_info )
 setopt prompt_subst
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' get-revision true
@@ -56,12 +65,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ -n "${DOCKER_MACHINE_NAME+x}" ]; then
-  docker_info_msg=" <${DOCKER_MACHINE_NAME}>"
-else
-  docker_info_msg=''
-fi
-
 if [ "$color_prompt" = yes ]; then
 export PS1='%* %l %j [%B%F{blue}%n%f@%F{magenta}%m%f%b : %F{green}%~%f]${vcs_info_msg_0_}${docker_info_msg}
 %# '
@@ -89,13 +92,6 @@ esac
 
 source ~/.profile
 
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-if [ -d "$HOME/usr/bin" ] ; then
-    PATH="$HOME/usr/bin:$PATH"
-fi
-
 autoload -U select-word-style
 select-word-style Bash
 bindkey '\033[3~' delete-char
@@ -104,3 +100,9 @@ bindkey '\033\033[3~' delete-word
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+export ASHTON_ZSH=test
