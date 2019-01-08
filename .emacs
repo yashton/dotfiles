@@ -41,9 +41,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(inhibit-startup-screen t)
+ '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (json-mode yaml-mode helm-dash helm-ag helm-core flycheck psc-ide psci purescript-mode elmacro scad-mode scad-preview hole-line-or-region protobuf-mode markdown-mode use-package async epl pkg-info magit-popup projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
+    (rjsx-mode json-mode yaml-mode helm-dash helm-ag helm-core flycheck psc-ide psci purescript-mode elmacro scad-mode scad-preview hole-line-or-region protobuf-mode markdown-mode use-package async epl pkg-info magit-popup projectile magit groovy-mode gradle-mode csharp-mode ag ensime)))
  '(safe-local-variable-values
    (quote
     ((eval remove-hook
@@ -121,3 +122,30 @@
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)
 (add-hook 'java-mode-hook 'ensime-mode)
+
+(defun split-name (s)
+  (split-string
+   (let ((case-fold-search nil))
+	 (downcase
+	  (replace-regexp-in-string "\\([a-z]\\)\\([A-Z]\\)" "\\1 \\2" s)))
+   "[^A-Za-z0-9]+"))
+(defun camelcase  (s) (mapconcat 'capitalize (split-name s) ""))
+(defun underscore (s) (mapconcat 'downcase   (split-name s) "_"))
+(defun dasherize  (s) (mapconcat 'downcase   (split-name s) "-"))
+(defun colonize   (s) (mapconcat 'capitalize (split-name s) "::"))
+(defun camelscore (s)
+  (cond ((string-match-p "\:" s)	(dasherize  s))
+	    ((string-match-p "-" s)	(camelcase  s))
+	    ((string-match-p "_"  s)	(colonize   s))
+	    (t						(underscore s)) ))
+(defun camelscore-word-at-point ()
+  (interactive)
+  (let* ((case-fold-search nil)
+	     (beg (and (skip-chars-backward "[:alnum:]:_-") (point)))
+	     (end (and (skip-chars-forward  "[:alnum:]:_-") (point)))
+	     (txt (buffer-substring beg end))
+	     (cml (camelscore txt)) )
+	(if cml (progn (delete-region beg end) (insert cml))) ))
+
+(global-set-key (kbd "M-C") 'camelscore-word-at-point)
+(setq python-shell-interpreter "python3")

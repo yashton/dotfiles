@@ -31,7 +31,6 @@ native
 patch*
 
 *.patch
-*.org
 
 .classpath
 .project
@@ -45,3 +44,8 @@ project.lock.json
 .ensime_cache.d
 .ensime_cache
 application.conf
+
+GPATH
+GRTAGS
+GTAGS
+TAGS

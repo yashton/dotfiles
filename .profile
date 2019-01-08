@@ -24,17 +24,15 @@ if [ -d "$HOME/usr/bin" ] ; then
     PATH="$HOME/usr/bin:$PATH"
 fi
 
-export EDITOR='emacs -nw'
-export SHELL='zsh'
+export EDITOR='emacs'
 export LANGUAGE="en_US:en"
 export LC_MESSAGES="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 export LC_COLLATE="en_US.UTF-8"
 
-alias emacs='emacs -nw'
 alias py2='python'
 alias py='python3'
-alias e='emacs -nw'
+alias e='emacs'
 alias g='git'
 alias gr='gradle'
 
