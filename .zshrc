@@ -67,7 +67,7 @@ fi
 
 if [ "$color_prompt" = yes ]; then
 export PS1='%* %l %j [%B%F{blue}%n%f@%F{magenta}%m%f%b : %F{green}%~%f]${vcs_info_msg_0_}${docker_info_msg}
-%# '
+☭ %# '
 fi
 #export PS1='%n@%m %# '
 #export RPROMPT='[%~] %t'
