@@ -90,6 +90,3 @@ fi
 if [ -d "$HOME/usr/bin" ] ; then
     PATH="$HOME/usr/bin:$PATH"
 fi
-
-export ASHTON_BASH=test
-source .profile

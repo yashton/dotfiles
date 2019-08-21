@@ -31,3 +31,5 @@ PATH=$PATH:~/.npm-global/bin
 if [ -e "$HOME/.profile-local" ] ; then
     source "$HOME/.profile-local"
 fi
+
+export PATH="$HOME/.cargo/bin:$PATH"

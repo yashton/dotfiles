@@ -57,3 +57,6 @@ TAGS
 application-*.yml
 *.properties
 .ignore
+
+logback.xml
+.scannerwork
