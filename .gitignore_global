@@ -59,4 +59,4 @@ application-*.yml
 .ignore
 
 logback.xml
-.scannerwork
+node_modules
