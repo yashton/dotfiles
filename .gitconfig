@@ -46,6 +46,7 @@
     mt = mergetool
     dt = difftool
     rb = rebase
+    mg = merge
     praise = blame
     tree = log --graph --all --abbrev-commit --decorate --pretty=treeline
     treehere = log --graph --abbrev-commit --decorate --pretty=treeline

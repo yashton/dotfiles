@@ -4,15 +4,14 @@
 (require 'package)
 (setq  package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                           ("org" . "http://orgmode.org/elpa/")
-                          ("melpa" . "http://melpa.org/packages/")
-                          ("melpa-stable" . "http://stable.melpa.org/packages/")))
+                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
 (setq load-prefer-newer t)
 
 ;; Misc
 (menu-bar-mode -1)
-(whole-line-or-region-mode 1)
+(whole-line-or-region-global-mode 1)
 (add-hook 'prog-mode-hook 'subword-mode)
 (add-hook 'minibuffer-setup-hook 'subword-mode)
 
@@ -56,22 +55,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(inhibit-startup-screen t)
- '(js-indent-level 2)
  '(package-selected-packages
-   (quote
-    (go-mode racer eldoc racket-mode rust-mode nginx-mode ess helm-projectile kotlin-mode haskell-mode whole-line-or-region yarn-mode graphviz-dot-mode rjsx-mode gxref ggtags helm-gtags tidy json-mode yaml-mode helm-dash helm-ag helm-core flycheck elmacro scad-mode scad-preview hole-line-or-region protobuf-mode markdown-mode async epl pkg-info magit-popup projectile magit groovy-mode gradle-mode csharp-mode ag ensime company lsp-mode lsp-ui toml-mode cargo flycheck-rust)))
+   '(ag async cargo company company-racer dockerfile-mode eldoc ensime flycheck flycheck-elixir flycheck-haskell flycheck-rust flymake flymake-elixir ggtags ghc ghci-completion ghc-imported-from graphviz-dot-mode gxref haskell-mode helm helm-ag helm-core helm-dash helm-flycheck helm-flymake helm-git helm-git-files helm-git-grep helm-gtags helm-projectile json-mode magit magit-gh-pulls magit-popup markdown-mode projectile racer racket-mode rust-mode scad-mode scad-preview toml-mode verilog-mode whole-line-or-region yaml-mode))
  '(safe-local-variable-values
-   (quote
-    ((js-indent-level . 2)
-     (\,
-      (js-indent-level . 2))
-     (eval remove-hook
-           (quote before-save-hook)
-           (quote delete-trailing-whitespace))
+   '((eval remove-hook 'before-save-hook 'delete-trailing-whitespace)
      (eval highlight-regexp " *$")
-     (eval highlight-regexp "^ *")
-     (textmate-gf-exclude . "(/|^)(\\.+[^/]+|fixtures|tmp|log|classes|build|target)($|/)|(\\.xcodeproj|\\.nib|\\.framework|\\.app|\\.pbproj|\\.pbxproj|\\.xcode|\\.xcodeproj|\\.bundle|\\.pyc)(/|$)")
-     (textmate-project-roots ".dir-locals.el"))))
+     (eval highlight-regexp "^ *")))
  '(vc-follow-symlinks t))
 
 (custom-set-faces
@@ -92,10 +81,10 @@
 (c-add-style "my-c-style" '((c-continued-statement-offset 4)))
 (defun my-c-mode-hook ()
     (c-set-style "my-c-style"))
-    ;; (c-set-offset 'inline-open '+)
-    ;; (c-set-offset 'block-open '+)
-    ;; (c-set-offset 'brace-list-open '+)   ; all "opens" should be indented by the c-indent-level
-;;    (c-set-offset 'case-label '+))       ; indent case labels by c-indent-level, too
+   ;;  (c-set-offset 'inline-open '+)
+   ;;  (c-set-offset 'block-open '+)
+   ;;  (c-set-offset 'brace-list-open '+)   ; all "opens" should be indented by the c-indent-level
+   ;; (c-set-offset 'case-label '+))       ; indent case labels by c-indent-level, too
 (add-hook 'java-mode-hook 'my-c-mode-hook)
 
 ;; Backups
@@ -131,15 +120,6 @@
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 
-;; Ensime
-(setq ensime-startup-notification nil)
-(setq ensime-startup-snapshot-notification nil)
-;;(add-hook 'java-mode-hook 'ensime-mode)
-
-
-;; HTML
-(add-hook 'html-mode-hook (lambda () (set (make-local-variable 'sgml-basic-offset) 4)))
-
 ;; GTAGS
 (add-hook 'prog-mode-hook 'helm-gtags-mode)
 (global-set-key (kbd "C-c h") 'helm-gtags-display-browser)
@@ -166,9 +146,6 @@
             (set (make-local-variable 'font-lock-comment-face)
                  'python-custom-face)))
 (setq python-shell-interpreter "python3")
-
-;; Javascript
-(add-to-list 'auto-mode-alist '(".*\\.js$" . rjsx-mode))
 
 ;; Rust
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
