@@ -74,10 +74,14 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 bindsym $mod+Mod1+j move workspace to output left
-bindsym $mod+Mod1+semicolon move workspace to output left
+bindsym $mod+Mod1+k move workspace to output up
+bindsym $mod+Mod1+l move workspace to output down
+bindsym $mod+Mod1+semicolon move workspace to output right
 
 bindsym $mod+Mod1+Left move workspace to output left
-bindsym $mod+Mod1+Right move workspace to output left
+bindsym $mod+Mod1+Up move workspace to output up
+bindsym $mod+Mod1+Down move workspace to output down
+bindsym $mod+Mod1+Right move workspace to output right
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -109,16 +113,17 @@ bindsym Mod1+q exec --no-startup-id xclip -selection c -out | qrencode -s 8 -o /
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: terminal"
+set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7: chat"
-set $ws8 "8: email"
-set $ws9 "9: media"
-set $ws10 "10: NX"
+set $ws6 "6: slack"
+set $ws7 "7: discord"
+set $ws8 "8: teams"
+set $ws9 "9: email"
+set $ws10 "10: media"
+set $ws11 "11: terminal"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -131,6 +136,7 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+bindsym $mod+minus workspace $ws11
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -143,6 +149,7 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+minus move container to workspace $ws11
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -186,7 +193,6 @@ bar {
 
 bindsym $mod+Shift+s exec --no-startup-id xscreensaver-command -lock
 
-
 exec slack
 exec discord
 exec spotify
@@ -194,26 +200,30 @@ exec firefox
 exec thunderbird
 exec pasystray
 exec --no-startup-id xscreensaver
-exec --no-startup-id xsetroot -solid "#285577"
+exec --no-startup-id powermate -c ~/.config/powermate/powermate.toml
+exec --no-startup-id playerctld daemon
 exec --no-startup-id xrandr --output HDMI-3 --auto --output HDMI-2 --auto --above HDMI-3 --output DP-1 --left-of HDMI-3
+exec --no-startup-id feh --bg-scale ~/.config/desktop.png
 
-assign [class="Slack"] $ws7
+assign [class="Slack"] $ws6
 assign [class="discord"] $ws7
-assign [class="thunderbird"] $ws8
-for_window [class="Spotify"] move to workspace $ws9
-assign [class="vlc"] $ws9
-assign [class="Nxplayer.bin"] $ws10
+assign [class="Microsoft Teams - Preview"] $ws8
+assign [class="thunderbird"] $ws9
+for_window [class="Spotify"] move to workspace $ws10
+assign [class="vlc"] $ws10
+assign [class="URxvt"] $ws11
 
 workspace $ws1 output HDMI-2
-workspace $ws2 output HDMI-3
-workspace $ws3 output HDMI-3
-workspace $ws4 output HDMI-3
-workspace $ws5 output HDMI-3
-workspace $ws6 output HDMI-3
-workspace $ws7 output HDMI-3
-workspace $ws8 output HDMI-3
-workspace $ws9 output HDMI-3
-workspace $ws10 output HDMI-3
+workspace $ws2 output HDMI-2
+workspace $ws3 output HDMI-2
+workspace $ws4 output HDMI-2
+workspace $ws5 output HDMI-2
+workspace $ws6 output DP-1
+workspace $ws7 output DP-1
+workspace $ws8 output DP-1
+workspace $ws9 output DP-1
+workspace $ws10 output DP-1
+workspace $ws11 output HDMI-3
 
 hide_edge_borders smart
 
